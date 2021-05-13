@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel(){
     private var score = 0
-    private var currentWordCount = 0
+    private var _currentWordCount = 0
+    val currentWordCount : Int get() = _currentWordCount
+
     private var _currentScrambledWord = "test"
     val currentScrambleWord : String get() = _currentScrambledWord
 
@@ -25,7 +27,7 @@ class GameViewModel : ViewModel(){
                 scrambledWord.shuffle()
             }
             _currentScrambledWord = String(scrambledWord)
-            ++currentWordCount
+            ++_currentWordCount
             usedWordsList.add(currentWord)
         }
     }
