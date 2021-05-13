@@ -122,4 +122,8 @@ class GameFragment : Fragment() {
     private fun updateNextWordOnScreen() {
         binding.textViewUnscrambledWord.text = viewModel.currentScrambleWord
     }
+
+    private fun showFinalScoreDialog(){
+
+    }
 }
