@@ -8,6 +8,8 @@ class GameViewModel : ViewModel(){
     private var _currentScrambledWord = "test"
     val currentScrambleWord : String get() = _currentScrambledWord
 
+    private var usedWordsList : MutableList<String> = mutableListOf()
+
     private var _count = 0
     val count : Int get() = _count
 
