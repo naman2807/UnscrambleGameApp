@@ -28,12 +28,11 @@ class GameViewModel : ViewModel() {
     private fun getNextWord() {
         currentWord = allWordsList.random()
         val scrambledWord = currentWord.toCharArray()
-        _currentScrambledWord = String(scrambledWord)
+        scrambledWord.shuffle()
         if (usedWordsList.contains(currentWord)) {
             getNextWord()
         } else {
-            scrambledWord.shuffle()
-            while (scrambledWord.toString().equals(currentScrambleWord, false)) {
+            while (scrambledWord.toString().equals(currentWord, false)) {
                 scrambledWord.shuffle()
             }
             _currentScrambledWord = String(scrambledWord)
