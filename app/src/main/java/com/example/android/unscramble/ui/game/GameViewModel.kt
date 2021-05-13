@@ -18,6 +18,10 @@ class GameViewModel : ViewModel(){
     private var _count = 0
     val count : Int get() = _count
 
+    init {
+        getNextWord()
+    }
+
     private fun getNextWord(){
         currentWord = allWordsList.random()
         val scrambledWord = currentWord.toCharArray()
