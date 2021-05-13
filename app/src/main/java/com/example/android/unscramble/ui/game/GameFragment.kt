@@ -31,9 +31,6 @@ import com.example.android.unscramble.databinding.GameFragmentBinding
 class GameFragment : Fragment() {
 
     private val viewModel : GameViewModel by viewModels()
-    private var score = 0
-    private var currentWordCount = 0
-    private var currentScrambledWord = "test"
 
 
     // Binding object instance with access to the views in the game_fragment.xml layout
