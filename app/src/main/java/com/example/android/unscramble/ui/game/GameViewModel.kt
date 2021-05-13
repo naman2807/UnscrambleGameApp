@@ -9,12 +9,13 @@ class GameViewModel : ViewModel(){
     val currentScrambleWord : String get() = _currentScrambledWord
 
     private var usedWordsList : MutableList<String> = mutableListOf()
+    private lateinit var currentWord : String
 
     private var _count = 0
     val count : Int get() = _count
 
     fun getNextWord(){
-        val currentWord = allWordsList.random()
+        currentWord = allWordsList.random()
         val scrambledWord = currentWord.toCharArray()
         _currentScrambledWord = String(scrambledWord)
     }
