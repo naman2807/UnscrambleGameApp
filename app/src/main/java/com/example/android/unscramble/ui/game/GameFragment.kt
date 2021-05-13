@@ -31,7 +31,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
  */
 class GameFragment : Fragment() {
 
-    private val viewModel : GameViewModel by viewModels()
+    private val viewModel: GameViewModel by viewModels()
 
 
     // Binding object instance with access to the views in the game_fragment.xml layout
@@ -68,10 +68,16 @@ class GameFragment : Fragment() {
     * Displays the next scrambled word.
     */
     private fun onSubmitWord() {
-        if(viewModel.nextWord()){
-            updateNextWordOnScreen()
-        }else{
-            showFinalScoreDialog()
+        var playerWord = binding.textInputEditText.text
+        if (viewModel.isUserWordCorrect(playerWord.toString())) {
+            setErrorTextField(false)
+            if (viewModel.nextWord()) {
+                updateNextWordOnScreen()
+            } else {
+                showFinalScoreDialog()
+            }
+        } else {
+            setErrorTextField(true)
         }
     }
 
@@ -131,14 +137,14 @@ class GameFragment : Fragment() {
     /*
      * Creates and shows an AlertDialog with the final score.
      */
-    private fun showFinalScoreDialog(){
+    private fun showFinalScoreDialog() {
         MaterialAlertDialogBuilder(requireContext()).setTitle(getString(R.string.congratulations))
                 .setMessage(getString(R.string.you_scored, viewModel.score))
                 .setCancelable(false)
-                .setNegativeButton(getString(R.string.exit)){ _, _ ->
+                .setNegativeButton(getString(R.string.exit)) { _, _ ->
                     exitGame()
                 }
-                .setPositiveButton(getString(R.string.play_again)){ _, _ ->
+                .setPositiveButton(getString(R.string.play_again)) { _, _ ->
                     restartGame()
                 }
                 .show()
