@@ -68,7 +68,7 @@ class GameFragment : Fragment() {
     * Displays the next scrambled word.
     */
     private fun onSubmitWord() {
-        var playerWord = binding.textInputEditText.text
+        val playerWord = binding.textInputEditText.text
         if (viewModel.isUserWordCorrect(playerWord.toString())) {
             setErrorTextField(false)
             if (viewModel.nextWord()) {
@@ -86,7 +86,12 @@ class GameFragment : Fragment() {
      * Increases the word count.
      */
     private fun onSkipWord() {
-
+        if(viewModel.nextWord()){
+            setErrorTextField(false)
+            updateNextWordOnScreen()
+        }else{
+            showFinalScoreDialog()
+        }
     }
 
     /*
